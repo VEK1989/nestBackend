@@ -1,0 +1,26 @@
+name: ci-github
+on:
+  push:
+    branches: [master, dev]
+  pull_request:
+    branches: [master, dev]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: action/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm install
+      - name: build project
+        run: npm run build
+      - name: prettier inspect
+      run: npm run prettier:inspect
+      - name: linters inspect
+        run: npm run eslint:inspect
