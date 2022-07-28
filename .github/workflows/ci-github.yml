@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
-        uses: action/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: install modules
@@ -21,6 +21,6 @@ jobs:
       - name: build project
         run: npm run build
       - name: prettier inspect
-      run: npm run prettier:inspect
+        run: npm run prettier:inspect
       - name: linters inspect
         run: npm run eslint:inspect
